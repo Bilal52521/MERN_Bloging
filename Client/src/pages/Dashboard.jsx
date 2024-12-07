@@ -1,7 +1,7 @@
 import React from "react";
 
-const SignIn = () => {
+function Dashboard() {
   return <div></div>;
-};
+}
 
-export default SignIn;
+export default Dashboard;
