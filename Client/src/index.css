@@ -3,4 +3,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import "flowbite";   */
+/* @layer base {
+  :root {
+    --text-color: #333333;
+    --file-color: #ffffff;
+    --gradient-color-start: #e0e0e0;
+    --gradient-color-middle: #f0f0f0;
+    --gradient-color-end: #f5f5f5;
+  }
+  .theme-purple {
+    --text-color: #ffffff;
+    --file-color: #6a0dad;
+    --gradient-color-start: #6a0dad;
+    --gradient-color-middle: #9b4f96;
+    --gradient-color-end: #b19cd9;
+  }
+  .theme-sky {
+    --text-color: #ffffff;
+    --file-color: #38bdf8;
+    --gradient-color-start: #38bdf8;
+    --gradient-color-middle: #0ea5e9;
+    --gradient-color-end: #0284c7;
+  }
+  .theme-green {
+    --text-color: #ffffff;
+    --file-color: #22c55e;
+    --gradient-color-start: #86efac;
+    --gradient-color-middle: #4ade80;
+    --gradient-color-end: #22c55e;
+  }
+  .theme-yellow {
+    --text-color: #333333;
+    --file-color: #facc15;
+    --gradient-color-start: #fde047;
+    --gradient-color-middle: #facc15;
+    --gradient-color-end: #ca8a04;
+  }
+} */
