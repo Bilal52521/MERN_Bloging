@@ -14,10 +14,10 @@ export const sign_up = async (req, res, next) => {
       password === "" ||
       email === ""
     ) {
-      next(errHandler(400, "All fields are rquired!"));
+      return next(errHandler(400, "All fields are rquired!"));
     }
 
-    const passwordHashed = bcryptpass.hash(password, 11);
+    const passwordHashed = await bcryptpass.hash(password, 11);
 
     const addUser = new User({
       username,
