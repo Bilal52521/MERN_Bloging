@@ -13,7 +13,7 @@ connectDB();
 
 app.use("/api/user", UserRouter);
 app.use("/api/auth", authRouter);
-app.use(errMiddleware)
+app.use(errMiddleware);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
