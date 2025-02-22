@@ -14,36 +14,6 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const submitHandle = async (e) => {
-  //   e.preventDefault();
-  //   if (!formData.email || !formData.password) {
-  //     return dispatch(singInFailuer("Please fill in all the fields."));
-  //   }
-  //   try {
-  //     dispatch(singInStart());
-  //     const response = await fetch("/api/auth/signin", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (!data.success) {
-  //       return dispatch(singInFailuer(data.message || "Operation failed."));
-  //     }
-
-  //     console.log("Sign-in successful:", data);
-
-  //     navigate("/");
-  //     dispatch(singInSuccess(data));
-  //   } catch (error) {
-  //     dispatch(
-  //       singInFailuer(error.message || "An error occurred. Please try again.")
-  //     );
-  //   }
-  // };
-
   const submitHandle = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
@@ -61,9 +31,9 @@ export default function SignIn() {
       // console.log("API Response Data:", data); // Debugging
 
       if (response.ok || data.success) {
-        dispatch(singInSuccess(data.user)); // Assuming `data.user` contains user details
+        dispatch(singInSuccess(data.user));
         console.log("Navigating to home...");
-        navigate("/"); // Redirect to home page
+        navigate("/");
       } else {
         dispatch(singInFailuer(data.message || "Authentication failed."));
       }

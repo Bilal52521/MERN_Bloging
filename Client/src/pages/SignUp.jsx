@@ -24,14 +24,13 @@ export default function SignUp() {
 
       const data = await response.json();
 
-      if (!data.success) {
-        return setErrMessage(data.message || "Operation failed.");
+      if (data.success || response.ok) {
+        setLoading(false);
+        navigate("/signin");
+        console.log("Sign-up Successfuly");
+      } else {
+        setErrMessage(data.message || "Sing-Up Operation Failed.");
       }
-
-      console.log("Sign-up successful:", data);
-      setLoading(false);
-
-      navigate("/signin");
     } catch (error) {
       setErrMessage(error.message || "Please fill in all fields correctly.");
       console.log("Fetching error ");
@@ -61,6 +60,7 @@ export default function SignUp() {
             quasi error, assumenda dicta?
           </p>
         </div>
+
         {/* right side */}
         <div className="flex-1">
           <form
