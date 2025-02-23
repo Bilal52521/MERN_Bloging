@@ -55,11 +55,43 @@ export const signin = async (req, res, next) => {
 
     const token = jwt.sign({ userId: userValid._id }, process.env.JWT_SECRET);
 
-    const {password : pass , ...rest} = userValid._doc;
+    const { password: pass, ...rest } = userValid._doc;
 
     res.status(200).cookie("access_token", token).json(rest);
   } catch (error) {
     next(error);
   }
 };
- 
+
+export const googleAuth = async (req, res, next) => {
+  const { name, email, photoURLGoogle } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password, ...rest } = user._doc;
+      res.status(200).cookie("acces_token", token).json(rest);
+    } else {
+      const genrandonpass =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+      const hashedPass = bcryptpass.hashSync(genrandonpass, 11);
+      const newUser = new User({
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(9).slice(-3),
+        email,
+        password: hashedPass,
+        profilepicture: photoURLGoogle,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const { password, ...rest } = user._doc;
+      res.status(200).cookie("access_token", token).json(rest);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
